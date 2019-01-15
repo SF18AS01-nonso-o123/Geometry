@@ -9,6 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    var shape: String = ""
     @IBOutlet weak var introView: UIView!
     
     @IBOutlet weak var introLabel: UILabel!
@@ -29,10 +31,30 @@ class ViewController: UIViewController {
     }
     
     @IBAction func htTextField(_ sender: UITextField) {
+        switch shape {
+        case "circle":
+            circleButtonPressed(circleButton)
+        case "triangle":
+            triButtonPressed(triButton)
+        case "rectangle":
+            rectButtonPressed(rectButton)
+        default:
+            introLabel.text = "Make a choice"
+        }
         sender.resignFirstResponder()
     }
     
     @IBAction func widthTextFeild(_ sender: UITextField) {
+        switch shape {
+        case "circle":
+            circleButtonPressed(circleButton)
+        case "triangle":
+            triButtonPressed(triButton)
+        case "rectangle":
+            rectButtonPressed(rectButton)
+        default:
+            introLabel.text = "Make a choice"
+        }
         sender.resignFirstResponder()
     }
     
@@ -49,12 +71,13 @@ class ViewController: UIViewController {
     }
     
     @IBAction func circleButtonPressed(_ sender: UIButton) {
+        shape = "circle"
         widthTextFld.placeholder = "Enter the radius of the circle"
         widthTextFld.isHidden = false
         htTextBx.isHidden = true
         if let text = widthTextFld.text {
             if let radius = Double(text) {
-                let area = Double.pi * radius * 2
+                let area = Double.pi * radius * radius
             introLabel.text = String(format: "%.4f", area)
             }
         }
@@ -64,6 +87,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func triButtonPressed(_ sender: UIButton) {
+        shape = "triangle"
         htTextBx.placeholder = "Enter the height of the triangle"
         widthTextFld.placeholder = "Enter the base of the triangle"
         widthTextFld.isHidden = false
@@ -90,6 +114,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func rectButtonPressed(_ sender: UIButton) {
+        shape = "rectangle"
         htTextBx.placeholder = "Enter the length of the rectangle"
         widthTextFld.placeholder = "Enter the width of the rectangle"
         widthTextFld.isHidden = false
